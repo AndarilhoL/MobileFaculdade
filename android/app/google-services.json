@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "882852125340",
+    "firebase_url": "https://crud-magic.firebaseio.com",
+    "project_id": "crud-magic",
+    "storage_bucket": "crud-magic.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:882852125340:android:6c364f8e2400d8992aab59",
+        "android_client_info": {
+          "package_name": "com.example.crup_api"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "882852125340-6gercgfknd8iqji8cmpqiud9d0k3pbp3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYWE1Rm55e2dlJqpkdqHHvTr0n1Xgqgl8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "882852125340-6gercgfknd8iqji8cmpqiud9d0k3pbp3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
