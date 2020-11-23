@@ -13,3 +13,8 @@ Estudar e Melhorar meu nível com FrontEnd
 - [x] Firebase
 - [x] API Scryfall
 - [ ] Código BEM ESCRITO
+
+#Layout
+<p align="center">
+  <img alt="crud_api_magic" src=".github/cap_login.JPG" width="100%">
+</p>
