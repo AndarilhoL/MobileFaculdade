@@ -14,7 +14,7 @@ Estudar e Melhorar meu nível com FrontEnd
 - [x] API Scryfall
 - [ ] Código BEM ESCRITO
 
-#Layout
+# Layout
 <p align="center">
-  <img alt="crud_api_magic" src=".github/cap_login.JPG" width="100%">
+  <img alt="crud_api_magic" src=".github/cap_login.JPG">
 </p>
