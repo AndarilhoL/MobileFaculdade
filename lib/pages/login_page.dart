@@ -93,11 +93,21 @@ class _LoginPageState extends State<LoginPage> {
                           width: double.maxFinite,
                           child: RaisedButton(
                             onPressed: () {
-                              auth.signInWithEmailAndPassword(
-                                  email: _email, password: _senha);
-                              Navigator.of(context).pushReplacement(
+                              try {
+                                auth.signInWithEmailAndPassword(
+                                    email: _email, password: _senha);
+                                Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
-                                      builder: (context) => DecksPage()));
+                                      builder: (context) => DecksPage()),
+                                );
+                              } on FirebaseAuthException catch (e) {
+                                if (e.code == 'user-not-found') {
+                                  print('No user found for that email.');
+                                } else if (e.code == 'wrong-password') {
+                                  print(
+                                      'Wrong password provided for that user.');
+                                }
+                              }
                             },
                             child: Text(
                               'LOGIN',

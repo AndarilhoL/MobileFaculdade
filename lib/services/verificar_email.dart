@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:crup_api/consts/consts_app.dart';
 import 'package:crup_api/pages/decks_pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';

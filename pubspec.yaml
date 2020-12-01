@@ -26,6 +26,7 @@ dependencies:
   firebase_core: ^0.5.2
   firebase_auth: ^0.18.3
   cloud_firestore: ^0.14.3
+  http: ^0.12.2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -54,6 +55,8 @@ flutter:
     - lib/assets/images/aprendiz_confirmar_email.jpg
     - lib/assets/images/aprendiz_confirmar_email2.png
     - lib/assets/images/elfos_llanowar_crop.jpg
+    - lib/assets/images/create_deck.jpg
+    - lib/assets/images/teste_sem_imagem.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
