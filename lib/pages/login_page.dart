@@ -1,9 +1,8 @@
 import 'package:crup_api/consts/consts_app.dart';
-import 'package:crup_api/pages/decks_pages.dart';
-import 'package:crup_api/services/verificar_email.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:crup_api/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -11,9 +10,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String _email, _senha;
-  final auth = FirebaseAuth.instance;
-
+  final loginController = LoginController();
   @override
   void initState() {
     //Deixar StatusBar Transparente
@@ -55,29 +52,29 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 child: Column(
                   children: <Widget>[
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Username',
-                      ),
-                      onChanged: (value) {
-                        setState(() {
-                          _email = value.trim();
-                        });
+                    Observer(
+                      builder: (_) {
+                        return TextField(
+                          decoration: InputDecoration(
+                            hintText: 'Username',
+                            errorText: loginController.validarUsername(),
+                          ),
+                          onChanged: loginController.setEmail,
+                        );
                       },
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 18, bottom: 60),
-                      child: TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          hintText: 'Senha',
-                        ),
-                        onChanged: (value) {
-                          setState(() {
-                            _senha = value.trim();
-                          });
-                        },
-                      ),
+                      child: Observer(builder: (_) {
+                        return TextField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            hintText: 'Senha',
+                            errorText: loginController.validarSenha(),
+                          ),
+                          onChanged: loginController.setSenha,
+                        );
+                      }),
                     ),
                     Container(
                       height: 50,
@@ -92,23 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                           height: 50,
                           width: double.maxFinite,
                           child: RaisedButton(
-                            onPressed: () {
-                              try {
-                                auth.signInWithEmailAndPassword(
-                                    email: _email, password: _senha);
-                                Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: (context) => DecksPage()),
-                                );
-                              } on FirebaseAuthException catch (e) {
-                                if (e.code == 'user-not-found') {
-                                  print('No user found for that email.');
-                                } else if (e.code == 'wrong-password') {
-                                  print(
-                                      'Wrong password provided for that user.');
-                                }
-                              }
-                            },
+                            onPressed: () {},
                             child: Text(
                               'LOGIN',
                               style: TextStyle(color: Colors.white),
@@ -142,17 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                               decoration: TextDecoration.underline),
                         ),
                         disabledColor: Colors.transparent,
-                        onPressed: () {
-                          auth
-                              .createUserWithEmailAndPassword(
-                                  email: _email, password: _senha)
-                              .then((_) {
-                            Navigator.of(context)
-                                .pushReplacement(MaterialPageRoute(
-                              builder: (context) => VerificarEmail(),
-                            ));
-                          });
-                        },
+                        onPressed: () {},
                       ),
                     ),
                   ],

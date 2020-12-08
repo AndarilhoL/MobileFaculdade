@@ -11,7 +11,6 @@ class CriarDeck extends StatefulWidget {
 }
 
 class _CriarDeckState extends State<CriarDeck> {
-  final _formKey = GlobalKey<FormState>();
   TextEditingController urlCartController = new TextEditingController();
   TextEditingController nomeDeckController = new TextEditingController();
   var urlImage = '';
@@ -31,22 +30,13 @@ class _CriarDeckState extends State<CriarDeck> {
               children: [
                 TextField(
                   decoration: InputDecoration(hintText: 'Nome Deck'),
-                  onChanged: (value) {
-                    setState(() {
-                      _nomeDeck = value.trim();
-                    });
-                  },
+                  onChanged: (value) {},
                 ),
                 TextField(
                   decoration:
                       InputDecoration(hintText: 'Endereço url da Carta'),
                   controller: urlCartController,
-                  onChanged: (value) {
-                    setState(() {
-                      value = _urlCarta;
-                      _urlCarta = value.trim();
-                    });
-                  },
+                  onChanged: (value) {},
                 ),
                 TextFormField(
                   decoration: InputDecoration(hintText: 'Nome Carta'),
@@ -56,11 +46,7 @@ class _CriarDeckState extends State<CriarDeck> {
                     }
                     return null;
                   },
-                  onChanged: (value) {
-                    setState(() {
-                      _nomeCarta = value;
-                    });
-                  },
+                  onChanged: (value) {},
                 ),
                 Divider(),
                 FlatButton(
