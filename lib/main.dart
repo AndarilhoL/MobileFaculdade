@@ -1,4 +1,8 @@
+import 'package:crup_api/pages/alterar_deck.dart';
+import 'package:crup_api/pages/create_deck.dart';
+import 'package:crup_api/pages/decks_pages.dart';
 import 'package:crup_api/pages/login_page.dart';
+import 'package:crup_api/services/verificar_email.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +23,16 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LoginPage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => LoginPage(),
+        '/deck-page': (context) => DecksPage(),
+        '/create-deck': (context) => CriarDeck(),
+        '/verificar-email': (context) => VerificarEmail(),
+        '/update-deck': (context) => AlterarDeck(
+              idDeck: ModalRoute.of(context).settings.arguments,
+            ),
+      },
     );
   }
 }

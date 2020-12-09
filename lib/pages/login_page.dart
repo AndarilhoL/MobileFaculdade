@@ -1,5 +1,4 @@
 import 'package:crup_api/consts/consts_app.dart';
-import 'package:crup_api/pages/decks_pages.dart';
 import 'package:crup_api/services/verificar_email.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -96,10 +95,8 @@ class _LoginPageState extends State<LoginPage> {
                               try {
                                 auth.signInWithEmailAndPassword(
                                     email: _email, password: _senha);
-                                Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: (context) => DecksPage()),
-                                );
+                                Navigator.pushReplacementNamed(
+                                    context, '/deck-page');
                               } on FirebaseAuthException catch (e) {
                                 if (e.code == 'user-not-found') {
                                   print('No user found for that email.');
