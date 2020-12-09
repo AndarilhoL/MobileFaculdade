@@ -1,8 +1,10 @@
 import 'package:crup_api/consts/consts_app.dart';
 import 'package:crup_api/controllers/login_controller.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -10,7 +12,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final loginController = LoginController();
   @override
   void initState() {
     //Deixar StatusBar Transparente
@@ -22,8 +23,11 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final loginController = Provider.of<LoginController>(context);
     var tamanhoTela = MediaQuery.of(context).size.height;
     var larguraTela = MediaQuery.of(context).size.width;
+
+    loginController.deslogarConta();
 
     return Scaffold(
       body: Container(
@@ -89,7 +93,20 @@ class _LoginPageState extends State<LoginPage> {
                           height: 50,
                           width: double.maxFinite,
                           child: RaisedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              loginController.validarAcesso();
+                              if (loginController.usuarioLogou) {
+                                Navigator.pushReplacementNamed(
+                                    context, '/home-page');
+                              } else {
+                                Flushbar(
+                                  title: "Deu ruim",
+                                  message:
+                                      "Seu usuário ou senha estão incorretos",
+                                  duration: Duration(seconds: 3),
+                                )..show(context);
+                              }
+                            },
                             child: Text(
                               'LOGIN',
                               style: TextStyle(color: Colors.white),

@@ -15,10 +15,17 @@ abstract class _LoginControllerBase with Store {
   @action
   setSenha(String senha) => _senha = senha;
 
+  @observable
+  User _user;
+  @action
+  setUser(User user) => _user = user;
+
   @computed
   String get email => _email;
   @computed
   String get senha => _senha;
+  @computed
+  bool get usuarioLogou => _user != null ? true : false;
 
   String validarUsername() {
     if (_email == null || _email.isEmpty) {
@@ -38,22 +45,24 @@ abstract class _LoginControllerBase with Store {
     return null;
   }
 
-  Future<String> validarAcesso(String username, String senha) async {
+  Future<String> validarAcesso() async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: username, password: senha);
-
-      return null;
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: _email, password: _senha);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
         return 'Usuário não encontrado';
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
         return 'Senha inválida';
       }
     }
-
+    setUser(FirebaseAuth.instance.currentUser);
     return null;
+  }
+
+  deslogarConta() {
+    try {
+      FirebaseAuth.instance.signOut();
+    } catch (e) {}
   }
 }

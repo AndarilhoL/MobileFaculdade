@@ -10,7 +10,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('HomePage'),
+        title: Text('Home Page'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        tooltip: 'Criar Deck',
+        onPressed: () => Navigator.pushNamed(context, '/create-deck'),
       ),
     );
   }
